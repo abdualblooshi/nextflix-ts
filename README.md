@@ -1,3 +1,8 @@
+  <!-- License -->
+  <a href="https://github.com/bo3ouf/nextflix/blob/main/LICENSE">
+    <img alt="license url" src="https://img.shields.io/badge/license%20-MIT-1C1E26?style=for-the-badge&labelColor=1C1E26&color=99EDC3"/>
+  </a>
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
