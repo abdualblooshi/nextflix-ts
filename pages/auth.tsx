@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import Input from "@/components/input";
+import Image from "next/image";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
@@ -17,11 +18,16 @@ const Auth = () => {
       <div className="bg-black w-full h-full lg:bg-opacity-50">
         <nav className="flex items-center justify-between p-4">
           <div className="flex items-center">
-            <img src="/images/logo.png" alt="logo" className="h-auto w-32" />
+            <Image
+              alt="Nextflix Logo"
+              src={"images/logo.svg"}
+              width={32}
+              height={50}
+            />
           </div>
         </nav>
         <div className="flex justify-center">
-          <div className="bg-black bg-opacity-70 p-16 self-center mt-2 lg:w-2/5 lg:max-w-md rounded-md w-full">
+          <div className="bg-black/70 p-16 self-center mt-2 lg:w-2/5 lg:max-w-md rounded-md w-full">
             <h2 className="text-4xl text-white font-semibold mb-8">
               {variant === "login" ? "Sign In" : "Register"}
             </h2>
