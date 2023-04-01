@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "mongodb"
-  url      = env("NEXT_MONGODB_URI")
+  url      = env("DEV_DB_URL") // CHANGE TO PRODUCTION_DB_URL WHEN DEPLOYING
 }
 
 model User {
@@ -56,4 +56,15 @@ model VerificationToken {
   expires DateTime
 
   @@unique([identifier, token])
+}
+
+model Movie {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  description String
+  videoUrl String
+  thumbnailUrl String
+  genre String
+  duration Int
+
 }

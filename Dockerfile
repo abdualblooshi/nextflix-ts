@@ -15,7 +15,7 @@ WORKDIR /app
 COPY package*.json /app
 
 # Environment Variables for MongoDB
-ENV NEXT_MONGODB_URI = "mongodb://mongo:27017"
+ENV DEV_DB_URL = "mongodb://mongo:27017"
 
 
 # Install dependencies in /app
