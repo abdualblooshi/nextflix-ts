@@ -15,7 +15,6 @@ services:
       - 127.0.0.1:3000:3000
     depends_on:
       - mongo
-      - prisma
   mongo:
     container_name: mongo
     image: mongo
@@ -24,17 +23,3 @@ services:
       - ./data:/data/db
     ports:
       - "27017:27017"
-  prisma:
-    container_name: prisma
-    image: prismagraphql/prisma
-    restart: always
-    ports:
-      - "4466:4466"
-    environment:
-      PRISMA_CONFIG: |
-        port: 4466
-        databases:
-          default:
-            connector: mongo
-            uri: mongodb://mongo:27017/prisma
-            schema: public
