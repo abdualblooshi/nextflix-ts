@@ -6,19 +6,11 @@
 
 ## Getting Started
 
-The project is dockerized but there are several ways to run it
+Make sure to define a `PRODUCTION_DB_URL` environment variable whether you're using Vercel, Github Pages etc..
 
-Running the development server (Without MongoDB NOT RECOMMENDED):
+You could just deploy the Docker Container or you could use [MongoDB Atlas/Cloud](https://www.mongodb.com/cloud) , if you use the Docker Container keep the `PRODUCTION_DB_URL` as `mongodb://mongo:27017` otherwise change it to the desired [MongoDB Atlas/Cloud](https://www.mongodb.com/cloud) URL
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-Running development/production using Docker (Production unavailable right now)
+Running development/production using Docker (Production still WIP)
 ```bash
 docker-compose up -f docker-compose.yaml
 ```
