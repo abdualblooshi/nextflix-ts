@@ -1,14 +1,15 @@
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
+    previewFeatures = ["mongoDb"]
 }
 
 datasource db {
   provider = "mongodb"
-  url      = env("DEV_DB_URL") // CHANGE TO PRODUCTION_DB_URL WHEN DEPLOYING
+  url      = env("DB")
 }
 
 model User {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
+  id String @id @default(uuid()) @map("_id") @db.ObjectId
   name String
   image String?
   email String? @unique
@@ -22,7 +23,7 @@ model User {
 }
 
 model Account{
-  id String @id @default(auto()) @map("_id") @db.ObjectId
+  id String @id @default(uuid()) @map("_id") @db.ObjectId
   userId String @db.ObjectId
   type String
   provider String
@@ -41,7 +42,7 @@ model Account{
 }
 
 model Session {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
+  id String @id @default(uuid()) @map("_id") @db.ObjectId
   sessionToken String @unique
   userId String @db.ObjectId
   expires DateTime
@@ -50,7 +51,7 @@ model Session {
 }
 
 model VerificationToken {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
+  id String @id @default(uuid()) @map("_id") @db.ObjectId
   identifier String
   token String @unique
   expires DateTime
@@ -59,7 +60,7 @@ model VerificationToken {
 }
 
 model Movie {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
+  id String @id @default(uuid()) @map("_id") @db.ObjectId
   title String
   description String
   videoUrl String
