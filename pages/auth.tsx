@@ -16,12 +16,13 @@ const Auth = () => {
   return (
     <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-center bg-cover">
       <div className="bg-black w-full h-full lg:bg-opacity-50">
-        <nav className="flex items-center justify-between p-4">
-          <div className="flex items-center">
+        <nav className="flex items-center justify-between lg:p-4 pt-4 px-4">
+          <div className="flex justify-center items-center">
             <Image
               alt="Nextflix Logo"
-              src={"images/logo.svg"}
-              width={32}
+              src={"/images/nextflix-text.png"}
+              className="w-32"
+              width={500}
               height={50}
             />
           </div>
