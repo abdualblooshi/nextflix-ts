@@ -13,6 +13,12 @@ const Auth = () => {
     setVariant((prev) => (prev === "login" ? "register" : "login"));
   }, []);
 
+  /*
+  TODO:
+  - Add validation
+  - Add login/register functionality
+  */
+
   return (
     <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-center bg-cover">
       <div className="bg-black w-full h-full lg:bg-opacity-50">
