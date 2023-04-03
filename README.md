@@ -8,23 +8,24 @@
 
 ## Getting Started
 
-First we need to build the Docker Image, you can keep the DB environment variable as `mongodb://mongo:27017` if you'd like to use the MongoDB available in our Docker Container, or you could also use [MongoDB Atlas/Cloud](https://www.mongodb.com/cloud) to make a cloud MongoDB database where MongoDB offers a free version/trial.
+We need to build and compose the Docker Image, you can keep the DB environment variable as `mongodb://mongo:27017` if you'd like to use the MongoDB available in our Docker Container, or you could also use [MongoDB Atlas/Cloud](https://www.mongodb.com/cloud) to make a cloud MongoDB database where MongoDB offers a free version/trial.
 
-If you've decided to go with MongoDB Atlas then replace `mongodb://mongo:27017` with your own database URL in the build command below.
+### Setting the Environment Variables
 
-### Building the Docker Image
+Create a .env file in the root folder of the app
+Add the following if you're going to use the docker MongoDB
+
 ```bash
-docker build -t nextflix --build-arg DB=mongodb://mongo:27017 .
+DB=mongodb://mongo:27017/users
 ```
-OR
+OR (For [MongoDB Atlas/Cloud](https://www.mongodb.com/cloud))
 ```bash
-docker build -t nextflix --build-arg DB=<MONGODB_CLOUD_URL> .
+DB=mongodb://USERNAME:PASSWORD@HOST/DATABASE
 ```
-If you're using MognODB Atlas replace `<MONGODB_CLOUD_URL> ` with your Database URL
 
-### Composing our docker.compose.yaml
+### Composing our docker.compose.yaml 
 ```bash
 docker-compose -f  docker-compose.yaml up
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
