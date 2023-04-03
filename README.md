@@ -3,9 +3,16 @@
   <a href="https://github.com/bo3ouf/nextflix-ts/blob/main/LICENSE">
     <img alt="license url" src="https://img.shields.io/badge/license%20-MIT-1C1E26?style=for-the-badge&labelColor=1C1E26&color=99EDC3"/>
   </a>
-  
-# This is a work in progress
-Nextflix is NOT NETFLIX, but it's a netflix clone built with Next.js, Prisma, TypeScript, TailwindCSS, MongoDB, and Docker. 😉
+
+Nextflix is NOT NETFLIX, but it's a netflix clone built with Next.js, Prisma, TypeScript, TailwindCSS, MongoDB, and Docker 😉.
+
+I made this project for fun and to learn more about Next.js, Prisma, TypeScript, TailwindCSS, MongoDB, and Docker, but this could be a good starting point for a streaming platform project similar to Netflix.
+
+# Features (Work in Progress)
+
+- [ ] Authentication (Login, Register, Logout)
+- [ ] User Settings
+- [ ] Dashboard
 
 # Getting Started
 
