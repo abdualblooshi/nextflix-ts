@@ -10,13 +10,12 @@ RUN mkdir -p /app
 # Set /app as the working directory
 WORKDIR /app
 
+# Install the Prisma CLI and Migrate
+RUN yarn global add prisma@3.5.0 @prisma/migrate
+
 # Copy package.json and package-lock.json
 # to the /app working directory
 COPY package*.json /app
-
-# Environment Variables for MongoDB
-ENV DEV_DB_URL = "mongodb://mongo:27017"
-
 
 # Install dependencies in /app
 RUN yarn install
@@ -24,8 +23,15 @@ RUN yarn install
 # Copy the rest of our Next.js folder into /app
 COPY . /app
 
+# Copy our bash script into /app
+COPY run.sh /app/
+
+# Allow our bash script to be executable
+RUN chmod +x /app/run.sh
+
+# Execute our bash script after the web and mongo containers are up
+# This will run the prisma migrate dev command
+CMD ["sh", "/app/run.sh"]
+
 # Ensure port 3000 is accessible to our system
 EXPOSE 3000
-
-# Run yarn dev, as we would via the command line 
-CMD ["yarn", "dev"]
