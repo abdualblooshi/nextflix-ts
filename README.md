@@ -24,7 +24,7 @@ Create a .env file in the root folder of the app
 Add the following if you're going to use the docker MongoDB
 
 ```bash
-DB=mongodb://mongo:27017/users
+DB=mongodb://localhost:27017/users?retryWrites=true&w=majority
 ```
 
 OR (For [MongoDB Atlas/Cloud](https://www.mongodb.com/cloud))
