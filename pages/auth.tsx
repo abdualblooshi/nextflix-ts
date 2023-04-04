@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import Input from "@/components/input";
+import axios from "axios";
 import Image from "next/image";
 
 const Auth = () => {
@@ -18,6 +19,19 @@ const Auth = () => {
   - Add validation
   - Add login/register functionality
   */
+
+  const register = useCallback(async () => {
+    try {
+      const { data } = await axios.post("/api/register", {
+        email,
+        name,
+        password,
+      });
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   return (
     <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-center bg-cover">
