@@ -16,8 +16,6 @@ I made this project for fun and to learn more about Next.js, Prisma, TypeScript,
 
 # Getting Started
 
-We need to build and compose the Docker Image, you can keep the DB environment variable as `mongodb://mongo:27017` if you'd like to use the MongoDB available in our Docker Container, or you could also use [MongoDB Atlas/Cloud](https://www.mongodb.com/cloud) to make a cloud MongoDB database where MongoDB offers a free version/trial.
-
 ## Setting the Environment Variables
 
 Create a .env file in the root folder of the app
