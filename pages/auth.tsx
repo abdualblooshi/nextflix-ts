@@ -1,18 +1,37 @@
 import { useCallback, useState } from "react";
+import { motion } from "framer-motion";
 import Input from "@/components/input";
 import axios from "axios";
 import Image from "next/image";
+import Message from "@/components/message";
+import { useRecoilState } from "recoil";
+import { isVisibleState, messageState, statusState } from "@/lib/message";
+import { useRouter } from "next/router";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
-
   const [variant, setVariant] = useState("login");
-
   const toggleVariant = useCallback(() => {
     setVariant((prev) => (prev === "login" ? "register" : "login"));
   }, []);
+
+  const [messageVisible, setMessageVisible] = useRecoilState(isVisibleState);
+  const [message, setMessage] = useRecoilState(messageState);
+  const [status, setStatus] = useRecoilState(statusState);
+  const [ipAddress, setIpAddress] = useState("");
+
+  const router = useRouter();
+
+  const getIpAddress = useCallback(async () => {
+    try {
+      const { data } = await axios.get("https://api.ipify.org?format=json");
+      setIpAddress(data?.ip);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [setIpAddress]);
 
   /*
   TODO:
@@ -22,16 +41,61 @@ const Auth = () => {
 
   const register = useCallback(async () => {
     try {
+      await getIpAddress();
       const { data } = await axios.post("/api/register", {
         email,
-        username,
+        phone,
+        password,
+        ipAddress,
+      });
+      console.log(data);
+      setMessage(data?.message);
+      setStatus("success");
+      setMessageVisible(true);
+
+      // clear fields and redirect to login
+      setEmail("");
+      setPhone("");
+      setPassword("");
+      setVariant("login");
+    } catch (error: any) {
+      console.log(error);
+      setMessage(error?.response.data.error);
+      setStatus("error");
+      setMessageVisible(true);
+    }
+  }, [
+    email,
+    phone,
+    password,
+    setMessage,
+    setStatus,
+    setMessageVisible,
+    ipAddress,
+    getIpAddress,
+  ]);
+
+  const login = useCallback(async () => {
+    try {
+      const { data } = await axios.post("/api/login", {
+        email,
         password,
       });
       console.log(data);
-    } catch (error) {
+      setMessage(data?.message);
+      setStatus("success");
+      setMessageVisible(true);
+      setTimeout(() => {
+        setMessageVisible(false);
+      }, 1500);
+      router.push("/");
+    } catch (error: any) {
       console.log(error);
+      setMessage(error?.response.data.error);
+      setStatus("error");
+      setMessageVisible(true);
     }
-  }, [email, username, password]);
+  }, [email, password, setMessage, setStatus, setMessageVisible, router]);
 
   return (
     <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-center bg-cover">
@@ -52,19 +116,32 @@ const Auth = () => {
             <h2 className="text-4xl text-white font-semibold mb-8">
               {variant === "login" ? "Sign In" : "Register"}
             </h2>
+            {messageVisible && (
+              <Message
+                message={message}
+                setMessageVisible={setMessageVisible}
+                messageVisible={messageVisible}
+                status={status}
+              />
+            )}
             <div className="flex flex-col gap-4">
               {variant === "register" && (
                 <Input
-                  id="username"
-                  label="Username"
-                  value={username}
-                  onChange={(e: any) => setUsername(e.target.value)}
+                  id="phone"
+                  label="Phone number (E.g +97150...)"
+                  type="tel"
+                  value={phone}
+                  onChange={(e: any) => setPhone(e.target.value)}
                 />
               )}
               <Input
                 id="email"
                 type="email"
-                label="Email address or phone number"
+                label={
+                  variant === "login"
+                    ? "Email or phone number"
+                    : "Email address"
+                }
                 value={email}
                 onChange={(e: any) => setEmail(e.target.value)}
               />
@@ -76,7 +153,7 @@ const Auth = () => {
                 onChange={(e: any) => setPassword(e.target.value)}
               />
               <button
-                onClick={register}
+                onClick={variant === "login" ? login : register}
                 className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition"
               >
                 {variant === "login" ? "Sign In" : "Register"}
