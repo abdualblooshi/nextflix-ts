@@ -3,7 +3,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  previewFeatures = ["mongoDb"]
 }
 
 datasource db {
@@ -13,9 +12,9 @@ datasource db {
 
 model User {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  username String
   image String?
-  email String? @unique
+  email String @unique
+  phone String @unique
   emailVerified DateTime?
   hashedPassword String?
   createdAt DateTime @default(now())
@@ -23,6 +22,7 @@ model User {
   sessions Session[]
   accounts Account[]
   favoriteIds String[] @db.ObjectId
+  ipAddress String?
 }
 
 model Account {
