@@ -15,6 +15,7 @@ const Input: React.FC<InputProps> = ({ id, onChange, value, label, type }) => {
         onChange={onChange}
         value={value}
         type={type}
+        maxLength={type === "tel" ? 16 : 100}
         id={id}
         className="
         block
