@@ -36,9 +36,7 @@ export default async function handler(
         .status(422)
         .json({ error: "Please fill the required fields!" });
     } else if (!email) {
-      return res
-        .status(422)
-        .json({ error: `Please enter an email address ${email}` });
+      return res.status(422).json({ error: `Please enter an email address` });
     } else if (!phone) {
       return res.status(422).json({ error: "Please enter a phone number" });
     } else if (!password) {
