@@ -23,11 +23,11 @@ export default async function handler(
     }
 
     if (!email) {
-      return res.status(422).json({ error: `Please your email address` });
+      return res.status(422).json({ error: `Please enter your email address` });
     }
 
     if (!password) {
-      return res.status(422).json({ error: "Please your password" });
+      return res.status(422).json({ error: "Please enter your password" });
     }
 
     // Check if its an email or a phone number
