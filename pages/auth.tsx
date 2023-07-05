@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Input from "@/components/input";
 import axios from "axios";
@@ -33,13 +33,8 @@ const Auth = () => {
     }
   }, [setIpAddress]);
 
-  /*
-  TODO:
-  - Add validation
-  - Add login/register functionality
-  */
-
   const register = useCallback(async () => {
+    setMessageVisible(false);
     try {
       await getIpAddress();
       const { data } = await axios.post("/api/register", {
@@ -76,6 +71,7 @@ const Auth = () => {
   ]);
 
   const login = useCallback(async () => {
+    setMessageVisible(false);
     try {
       const { data } = await axios.post("/api/login", {
         email,
@@ -124,7 +120,11 @@ const Auth = () => {
                 status={status}
               />
             )}
-            <div className="flex flex-col gap-4">
+            <form
+              className="flex flex-col gap-4"
+              onSubmit={(e) => e.preventDefault()}
+              autoComplete="off"
+            >
               {variant === "register" && (
                 <Input
                   id="phone"
@@ -146,8 +146,8 @@ const Auth = () => {
                 onChange={(e: any) => setEmail(e.target.value)}
               />
               <Input
-                type="password"
                 id="password"
+                type="password"
                 label="Password"
                 value={password}
                 onChange={(e: any) => setPassword(e.target.value)}
@@ -158,6 +158,7 @@ const Auth = () => {
               >
                 {variant === "login" ? "Sign In" : "Register"}
               </button>
+
               <p className="text-neutral-500 mt-12 text-center">
                 {variant === "login"
                   ? "First time using Netflix?"
@@ -170,7 +171,7 @@ const Auth = () => {
                 </span>
                 .
               </p>
-            </div>
+            </form>
           </div>
         </div>
       </div>
