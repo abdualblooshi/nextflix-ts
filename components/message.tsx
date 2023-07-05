@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface MessageProps {
@@ -17,6 +17,19 @@ const Message: React.FC<MessageProps> = ({
   const close = useCallback(() => {
     setMessageVisible(false);
   }, [setMessageVisible]);
+
+  // auto close message after 5 seconds
+  useEffect(
+    () => {
+      const timer = setTimeout(() => {
+        setMessageVisible(false);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   return (
     <AnimatePresence>
