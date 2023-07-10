@@ -13,6 +13,8 @@ const Auth = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastname] = useState("");
   const [variant, setVariant] = useState("login");
   const toggleVariant = useCallback(() => {
     setVariant((prev) => (prev === "login" ? "register" : "login"));
@@ -52,12 +54,10 @@ const Auth = () => {
       }, 1500);
 
       await signIn("credentials", {
-        redirect: false,
         email: data?.user.email,
         password,
-        callbackUrl: "/",
+        callbackUrl: "/profiles",
       });
-      router.push("/");
     } catch (error: any) {
       console.log(error);
       setMessage(
@@ -66,13 +66,15 @@ const Auth = () => {
       setStatus("error");
       setMessageVisible(true);
     }
-  }, [email, password, setMessage, setStatus, setMessageVisible, router]);
+  }, [email, password, setMessage, setStatus, setMessageVisible]);
 
   const register = useCallback(async () => {
     setMessageVisible(false);
     try {
       await getIpAddress();
       const { data } = await axios.post("/api/register", {
+        firstName,
+        lastName,
         email,
         phone,
         password,
@@ -84,6 +86,8 @@ const Auth = () => {
       setMessageVisible(true);
 
       // clear fields and redirect to login
+      setFirstName("");
+      setLastname("");
       setEmail("");
       setPhone("");
       setPassword("");
@@ -104,17 +108,19 @@ const Auth = () => {
     ipAddress,
     getIpAddress,
     login,
+    firstName,
+    lastName,
   ]);
 
   return (
     <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-center bg-cover">
       <div className="bg-black w-full h-full lg:bg-opacity-50">
-        <nav className="flex items-center justify-between lg:p-4 pt-4 px-4">
+        <nav className="flex items-center justify-between lg:p-6 pt-4 px-4">
           <div className="flex justify-center items-center">
             <Image
               alt="Nextflix Logo"
               src={"/images/nextflix-text.png"}
-              className="w-32"
+              className="w-44"
               width={500}
               height={50}
             />
@@ -131,13 +137,31 @@ const Auth = () => {
               autoComplete="off"
             >
               {variant === "register" && (
-                <Input
-                  id="phone"
-                  label="Phone number (E.g +97150...)"
-                  type="tel"
-                  value={phone}
-                  onChange={(e: any) => setPhone(e.target.value)}
-                />
+                <>
+                  <div className="flex lg:flex-row gap-4 w-full flex-col">
+                    <Input
+                      id="firstName"
+                      label="First name"
+                      type="text"
+                      value={firstName}
+                      onChange={(e: any) => setFirstName(e.target.value)}
+                    />
+                    <Input
+                      id="lastName"
+                      label="Last name"
+                      type="text"
+                      value={lastName}
+                      onChange={(e: any) => setLastname(e.target.value)}
+                    />
+                  </div>
+                  <Input
+                    id="phone"
+                    label="Phone number (E.g +97150...)"
+                    type="tel"
+                    value={phone}
+                    onChange={(e: any) => setPhone(e.target.value)}
+                  />
+                </>
               )}
               <Input
                 id="email"
