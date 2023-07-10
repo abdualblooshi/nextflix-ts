@@ -5,8 +5,9 @@ import axios from "axios";
 import Image from "next/image";
 import Message from "@/components/message";
 import { useRecoilState } from "recoil";
-import { isVisibleState, messageState, statusState } from "@/lib/message";
+import { isVisibleState, messageState, statusState } from "@/libs/message";
 import { useRouter } from "next/router";
+import { signIn } from "next-auth/react";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
@@ -33,6 +34,40 @@ const Auth = () => {
     }
   }, [setIpAddress]);
 
+  const login = useCallback(async () => {
+    setMessageVisible(false);
+    try {
+      const { data } = await axios.post("/api/login", {
+        email,
+        password,
+      });
+
+      console.log(data);
+
+      setMessage(data?.message);
+      setStatus("success");
+      setMessageVisible(true);
+      setTimeout(() => {
+        setMessageVisible(false);
+      }, 1500);
+
+      await signIn("credentials", {
+        redirect: false,
+        email: data?.user.email,
+        password,
+        callbackUrl: "/",
+      });
+      router.push("/");
+    } catch (error: any) {
+      console.log(error);
+      setMessage(
+        error?.response ? error?.response?.data?.error : error?.message
+      );
+      setStatus("error");
+      setMessageVisible(true);
+    }
+  }, [email, password, setMessage, setStatus, setMessageVisible, router]);
+
   const register = useCallback(async () => {
     setMessageVisible(false);
     try {
@@ -52,7 +87,7 @@ const Auth = () => {
       setEmail("");
       setPhone("");
       setPassword("");
-      setVariant("login");
+      login();
     } catch (error: any) {
       console.log(error);
       setMessage(error?.response.data.error);
@@ -68,30 +103,8 @@ const Auth = () => {
     setMessageVisible,
     ipAddress,
     getIpAddress,
+    login,
   ]);
-
-  const login = useCallback(async () => {
-    setMessageVisible(false);
-    try {
-      const { data } = await axios.post("/api/login", {
-        email,
-        password,
-      });
-      console.log(data);
-      setMessage(data?.message);
-      setStatus("success");
-      setMessageVisible(true);
-      setTimeout(() => {
-        setMessageVisible(false);
-      }, 1500);
-      router.push("/");
-    } catch (error: any) {
-      console.log(error);
-      setMessage(error?.response.data.error);
-      setStatus("error");
-      setMessageVisible(true);
-    }
-  }, [email, password, setMessage, setStatus, setMessageVisible, router]);
 
   return (
     <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-center bg-cover">
@@ -112,14 +125,6 @@ const Auth = () => {
             <h2 className="text-4xl text-white font-semibold mb-8">
               {variant === "login" ? "Sign In" : "Register"}
             </h2>
-            {messageVisible && (
-              <Message
-                message={message}
-                setMessageVisible={setMessageVisible}
-                messageVisible={messageVisible}
-                status={status}
-              />
-            )}
             <form
               className="flex flex-col gap-4"
               onSubmit={(e) => e.preventDefault()}
