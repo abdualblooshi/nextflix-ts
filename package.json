@@ -19,6 +19,7 @@
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
     "framer-motion": "^10.12.18",
+    "lodash": "^4.17.21",
     "mongodb": "^5.2.0",
     "next": "13.2.4",
     "next-auth": "^4.21.1",
@@ -30,6 +31,7 @@
     "typescript": "5.0.2"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.195",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",
     "prisma": "^4.12.0",
