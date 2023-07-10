@@ -8,7 +8,7 @@ import {
   messageState,
   statusState,
   isLoadingState,
-} from "@/lib/message";
+} from "@/libs/message";
 import TV from "@/components/tv";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/router";
