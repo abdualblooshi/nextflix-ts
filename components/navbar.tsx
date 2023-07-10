@@ -1,20 +1,44 @@
 import Image from "next/image";
 import NavbarItem from "./NavbarItem";
+import AccountMenu from "./AccountMenu";
 import { BsChevronDown, BsSearch, BsBell } from "react-icons/bs";
 import MobileMenu from "./MobileMenu";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+const TOP_OFFSET = 66;
 
 const Navbar = () => {
   const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
-
+  const [isAccountMenuVisible, setIsAccountMenuVisible] = useState(false);
+  const [showBackground, setShowBackground] = useState(false);
   const toggleMobileMenu = () => {
     setIsMobileMenuVisible((prev) => !prev);
   };
 
+  const toggleAccountMenu = () => {
+    setIsAccountMenuVisible((prev) => !prev);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > TOP_OFFSET) {
+        setShowBackground(true);
+      } else {
+        setShowBackground(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <nav className="w-full fixed z-40">
       <div
-        className="
+        className={`
             px-4
             md:px-16
             py-6
@@ -23,9 +47,13 @@ const Navbar = () => {
             items-center
             transition
             duration-500
-            bg-zinc-900
-            bg-opacity-90
-        "
+            bg-zinc-900/90
+            ${
+              showBackground
+                ? "bg-zinc-900/100 backdrop-filter backdrop-blur-lg"
+                : ""
+            }
+        `}
       >
         <Image
           alt="Nextflix Logo"
@@ -55,7 +83,11 @@ const Navbar = () => {
           className="lg:hidden flex flex-row items-center gap-2 ml-8 cursor-pointer relative"
         >
           <p className="text-white text-sm">Browse</p>
-          <BsChevronDown className="text-white transition" />
+          <BsChevronDown
+            className={`text-white transition ${
+              isMobileMenuVisible ? "rotate-180" : ""
+            }`}
+          />
           <MobileMenu visible={isMobileMenuVisible} />
         </div>
         <div className="flex flex-row ml-auto gap-7 items-center">
@@ -65,7 +97,10 @@ const Navbar = () => {
           <div className="text-white cursor-pointer hover:text-gray-300 transition">
             <BsBell />
           </div>
-          <div className="flex flex-row items-center gap-2 cursor-pointer relative">
+          <div
+            onClick={toggleAccountMenu}
+            className="flex flex-row items-center gap-2 cursor-pointer relative"
+          >
             <div className="w-6 h-6 lg:w-10 lg:h-10 rounded-md overflow-hidden">
               <Image
                 alt="Profile"
@@ -74,8 +109,12 @@ const Navbar = () => {
                 height={500}
               />
             </div>
-            <BsChevronDown className="text-white transition" />\
-            <AccountMenu />
+            <BsChevronDown
+              className={`text-white transition ${
+                isAccountMenuVisible ? "rotate-180" : ""
+              }`}
+            />
+            <AccountMenu visible={isAccountMenuVisible} />
           </div>
         </div>
       </div>
