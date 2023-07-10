@@ -57,7 +57,7 @@ const Input: React.FC<InputProps> = ({ id, onChange, value, label, type }) => {
       />
       {id === "password" && (
         <div
-          className="absolute top-4 right-6 text-gray-400 cursor-pointer"
+          className="absolute top-4 right-6 text-gray-400 cursor-pointer select-none"
           onClick={handleTogglePasswordVisibility}
         >
           {isPasswordVisible ? "HIDE" : "SHOW"}
