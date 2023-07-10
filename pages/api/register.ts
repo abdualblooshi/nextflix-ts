@@ -1,6 +1,24 @@
 import bcrypt from "bcrypt";
 import { NextApiRequest, NextApiResponse } from "next";
-import prismadb from "../../lib/prismadb";
+import prismadb from "../../libs/prismadb";
+import { get, set } from "lodash";
+
+const rateLimit = 2; // Number of allowed requests per hour
+const rateLimiter: { [ip: string]: number[] } = {};
+
+const rateLimiterMiddleware = (ip: string | string[]) => {
+  const now = Date.now();
+  const windowStart = now - 60 * 60 * 1000; // 1 hour ago
+
+  const requestTimestamps = get(rateLimiter, ip, []).filter(
+    (timestamp: number) => timestamp > windowStart
+  );
+  requestTimestamps.push(now);
+
+  set(rateLimiter, ip, requestTimestamps);
+
+  return requestTimestamps.length <= rateLimit;
+};
 
 export default async function handler(
   req: NextApiRequest,
@@ -17,6 +35,13 @@ export default async function handler(
     // our response body on the client side is going to be an object JSON.Stringfiy() with keys of email, username, and password
     const { email, phone, password, ipAddress } = req.body;
 
+    const ip = req.headers["x-real-ip"] || req.socket.remoteAddress || "";
+    if (!rateLimiterMiddleware(ip)) {
+      return res
+        .status(429)
+        .json({ error: "Too many requests, please try again later!" });
+    }
+
     // Limit the number of accounts that can be created from the same IP address in production in a short amount of time
     const existingUsers = await prismadb.user.findMany({
       where: {
@@ -27,7 +52,7 @@ export default async function handler(
     if (env === "production" && existingUsers.length === 3) {
       return res.status(422).json({
         error:
-          "Too many accounts have been created from this IP address, please try again later",
+          "You have reached the maximum number of accounts that can be created.",
       });
     }
 
@@ -100,7 +125,7 @@ export default async function handler(
     const user = await prismadb.user.create({
       data: {
         email,
-        phone,
+        phone: phone.replace(/\+/g, ""),
         hashedPassword: hashedPassword,
         image: "",
         emailVerified: new Date(),
