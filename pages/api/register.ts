@@ -33,7 +33,7 @@ export default async function handler(
     const env = process.env.NODE_ENV;
 
     // our response body on the client side is going to be an object JSON.Stringfiy() with keys of email, username, and password
-    const { email, phone, password, ipAddress } = req.body;
+    const { firstName, lastName, email, phone, password, ipAddress } = req.body;
 
     const ip = req.headers["x-real-ip"] || req.socket.remoteAddress || "";
     if (!rateLimiterMiddleware(ip)) {
@@ -56,7 +56,7 @@ export default async function handler(
       });
     }
 
-    if (!email && !phone && !password) {
+    if (!email && !phone && !password && !firstName && !lastName) {
       return res
         .status(422)
         .json({ error: "Please fill the required fields!" });
@@ -66,6 +66,10 @@ export default async function handler(
       return res.status(422).json({ error: "Please enter a phone number" });
     } else if (!password) {
       return res.status(422).json({ error: "Please enter a password" });
+    } else if (!firstName) {
+      return res.status(422).json({ error: "Please enter a first name" });
+    } else if (!lastName) {
+      return res.status(422).json({ error: "Please enter a last name" });
     }
 
     const existingEmail = await prismadb.user.findUnique({
@@ -87,6 +91,18 @@ export default async function handler(
       return res
         .status(422)
         .json({ error: "Account already exists, please login instead" });
+    }
+
+    // Check if first name and last name are at least 2 characters long
+    if (firstName.length < 2 || lastName.length < 2) {
+      return res.status(422).json({
+        error: "First name and last name must be at least 2 characters long",
+      });
+    }
+
+    // Check if the first name and last name are valid
+    if (!/^[a-zA-Z]+$/.test(firstName) || !/^[a-zA-Z]+$/.test(lastName)) {
+      return res.status(422).json({ error: "Invalid first name or last name" });
     }
 
     // Check if the password is at least 6 characters long
@@ -124,6 +140,8 @@ export default async function handler(
 
     const user = await prismadb.user.create({
       data: {
+        firstName,
+        lastName,
         email,
         phone: phone.replace(/\+/g, ""),
         hashedPassword: hashedPassword,
