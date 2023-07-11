@@ -9,7 +9,6 @@ import {
   statusState,
   isLoadingState,
 } from "@/libs/message";
-import TV from "@/components/tv";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/router";
 
