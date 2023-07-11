@@ -52,6 +52,7 @@ const AppWrapper = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Head>
+        <title>Nextflix</title>
         <link rel="shortcut icon" href="/favicon.ico" />
         <link
           rel="apple-touch-icon"
