@@ -56,7 +56,7 @@ export default async function handler(
       });
     }*/
 
-    if (env === "production") {
+    if (env === "production" || 1 == 1) {
       return res.status(422).json({
         error:
           "This is a production environment, please try again in a few minutes later",
