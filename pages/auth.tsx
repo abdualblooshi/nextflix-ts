@@ -1,9 +1,9 @@
 import { useCallback, useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import Input from "@/components/Input";
+import Input from "@/components/input";
 import axios from "axios";
 import Image from "next/image";
-import Message from "@/components/Message";
+import Message from "@/components/message";
 import { useRecoilState } from "recoil";
 import { isVisibleState, messageState, statusState } from "@/libs/message";
 import { useRouter } from "next/router";

@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 import { useCallback, useEffect } from "react";
 import { RecoilRoot, useRecoilState } from "recoil";
 import type { AppProps } from "next/app";
-import Message from "@/components/Message";
+import Message from "@/components/message";
 import {
   isVisibleState,
   messageState,
