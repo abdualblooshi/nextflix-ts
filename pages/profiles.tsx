@@ -28,12 +28,6 @@ const Profiles = () => {
 
   const { data: user } = useCurrentUser();
 
-  const getRandomProfileImage = () => {
-    const colors = ["blue", "green", "red", "slate"];
-    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    return `/images/default-${randomColor}.png`;
-  };
-
   const router = useRouter();
 
   return (
@@ -65,7 +59,7 @@ const Profiles = () => {
               "
               >
                 <Image
-                  src={getRandomProfileImage()}
+                  src="/images/default-blue.png"
                   alt="Profile"
                   width={200}
                   height={200}
