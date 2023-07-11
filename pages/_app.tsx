@@ -11,6 +11,15 @@ import {
 } from "@/libs/message";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/router";
+import Head from "next/head";
+
+import { Ubuntu } from "next/font/google";
+
+const ubuntu = Ubuntu({
+  weight: ["300", "400", "500", "700"],
+  subsets: ["latin"],
+  variable: "--font-ubuntu",
+});
 
 const AppWrapper = ({ Component, pageProps }: AppProps) => {
   const [messageVisible, setMessageVisible] = useRecoilState(isVisibleState);
@@ -42,13 +51,35 @@ const AppWrapper = ({ Component, pageProps }: AppProps) => {
 
   return (
     <>
-      <Message
-        message={message}
-        setMessageVisible={setMessageVisible}
-        messageVisible={messageVisible}
-        status={status}
-      />
-      <Component {...pageProps} />
+      <Head>
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+      </Head>
+      <div className={`${ubuntu.className} w-full h-full`}>
+        <Message
+          message={message}
+          setMessageVisible={setMessageVisible}
+          messageVisible={messageVisible}
+          status={status}
+        />
+        <Component {...pageProps} />
+      </div>
     </>
   );
 };
