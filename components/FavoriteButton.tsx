@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useCallback, useMemo } from "react";
 import { PlusIcon, CheckIcon } from "@heroicons/react/24/outline";
+import { useRecoilState } from "recoil";
+import { isVisibleState, messageState, statusState } from "@/libs/message";
 
 import useCurrentUser from "@/hooks/useCurrentUser";
 import useFavorites from "@/hooks/useFavorites";
@@ -10,6 +12,9 @@ interface FavoriteButtonProps {
 }
 
 const FavoriteButton: React.FC<FavoriteButtonProps> = ({ movieId }) => {
+  const [messageVisible, setMessageVisible] = useRecoilState(isVisibleState);
+  const [message, setMessage] = useRecoilState(messageState);
+  const [status, setStatus] = useRecoilState(statusState);
   const { mutate: mutateFavorites } = useFavorites();
 
   const { data: currentUser, mutate } = useCurrentUser();
@@ -25,8 +30,20 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({ movieId }) => {
 
     if (isFavorite) {
       response = await axios.delete("/api/favorite", { data: { movieId } });
+      setMessage("Removed from My List");
+      setStatus("success");
+      setMessageVisible(true);
+      setTimeout(() => {
+        setMessageVisible(false);
+      }, 1500);
     } else {
       response = await axios.post("/api/favorite", { movieId });
+      setMessage("Added to My List");
+      setStatus("success");
+      setMessageVisible(true);
+      setTimeout(() => {
+        setMessageVisible(false);
+      }, 1500);
     }
 
     const updatedFavoriteIds = response?.data?.favoriteIds;
@@ -36,7 +53,16 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({ movieId }) => {
       favoriteIds: updatedFavoriteIds,
     });
     mutateFavorites();
-  }, [movieId, isFavorite, currentUser, mutate, mutateFavorites]);
+  }, [
+    isFavorite,
+    mutate,
+    currentUser,
+    mutateFavorites,
+    movieId,
+    setMessage,
+    setStatus,
+    setMessageVisible,
+  ]);
 
   const Icon = isFavorite ? CheckIcon : PlusIcon;
 
