@@ -129,17 +129,17 @@ const Auth = () => {
         </nav>
         <div className="flex justify-center">
           <div className="bg-black/70 p-16 self-center mt-2 lg:w-2/5 lg:max-w-md rounded-md w-full">
-            <h2 className="text-4xl text-white font-semibold mb-8">
+            <h2 className="md:text-4xl text-3xl text-white font-semibold mb-8">
               {variant === "login" ? "Sign In" : "Register"}
             </h2>
             <form
-              className="flex flex-col gap-4"
+              className="flex flex-col gap-4 max-md:text-sm"
               onSubmit={(e) => e.preventDefault()}
               autoComplete="off"
             >
               {variant === "register" && (
                 <>
-                  <div className="flex lg:flex-row gap-4 w-full flex-col">
+                  <div className="flex lg:flex-row gap-4 w-full flex-col max-md:text-sm">
                     <Input
                       id="firstName"
                       label="First name"

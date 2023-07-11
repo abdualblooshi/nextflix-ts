@@ -47,7 +47,7 @@ const Message: React.FC<MessageProps> = ({
             exit={{ opacity: 0 }}
             className={`${
               status === "success" ? "bg-green-600" : "bg-red-600"
-            } w-full lg:w-1/2 h-16 rounded-md flex justify-between items-center px-4`}
+            } w-[55%] lg:w-1/2 h-16 rounded-md flex justify-between items-center px-4 lg:text-xl`}
           >
             <p className="text-white text-md">{message}</p>
             <button onClick={close} className="text-white text-md">
