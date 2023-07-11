@@ -1,10 +1,10 @@
-## (Still a work in progress)
+## [Demo](https://nextflix-aop2wgiu5-gitanimous.vercel.app/)
 
-![Frame 1](https://user-images.githubusercontent.com/34681035/229315306-eea7671f-6592-4f9f-8934-a08106156e41.png)
+[![Frame 1](https://user-images.githubusercontent.com/34681035/229315306-eea7671f-6592-4f9f-8934-a08106156e41.png)](https://nextflix-aop2wgiu5-gitanimous.vercel.app/)
 
-  <a href="https://github.com/bo3ouf/nextflix-ts/blob/main/LICENSE">
-    <img alt="license url" src="https://img.shields.io/badge/license%20-MIT-1C1E26?style=for-the-badge&labelColor=1C1E26&color=99EDC3"/>
-  </a>
+
+
+  ![Vercel](https://vercelbadge.vercel.app/api/abdualblooshi/nextflix-ts) [![License](https://img.shields.io/badge/license%20-MIT-1C1E26?style=for-the-badge&labelColor=1C1E26&color=99EDC3)](./LICENSE)
 
 Nextflix is NOT NETFLIX, but it's a netflix clone built with Next.js, Prisma, TypeScript, TailwindCSS, MongoDB 😉.
 
