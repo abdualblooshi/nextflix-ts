@@ -132,6 +132,9 @@ const Auth = () => {
             <h2 className="text-4xl text-white font-semibold mb-8">
               {variant === "login" ? "Sign In" : "Register"}
             </h2>
+            <p className="text-white mb-4">
+              (Registration is disabled. Press sign in)
+            </p>
             <form
               className="flex flex-col gap-4"
               onSubmit={(e) => e.preventDefault()}

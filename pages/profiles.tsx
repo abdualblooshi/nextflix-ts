@@ -32,10 +32,14 @@ const Profiles = () => {
 
   return (
     <div className="flex items-center h-full justify-center">
-      <div className="flex flex-col">
+      <div className="flex flex-col items-center">
         <h1 className="text-3xl md:text-6xl text-white text-center">
           Who is watching?
         </h1>
+        <p className="text-1xl md:text-2xl text-gray-400 text-center mt-4 w-[60%]">
+          (Please note that this is a demo app and registration was disabled to
+          prevent abuse)
+        </p>
         <div className="flex items-center justify-center gap-8 mt-10">
           <div
             onClick={() => {
