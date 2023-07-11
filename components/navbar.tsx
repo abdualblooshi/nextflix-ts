@@ -48,13 +48,14 @@ const Navbar = () => {
             items-center
             transition
             duration-500
+             max-md:text-sm
             ${showBackground ? "bg-zinc-900/90" : "bg-transparent"}
         `}
       >
         <Image
           alt="Nextflix Logo"
           src={"/images/nextflix-text.png"}
-          className="w-24 md:w-32"
+          className="w-16 md:w-32"
           width={500}
           height={500}
         />
@@ -76,9 +77,9 @@ const Navbar = () => {
         </div>
         <div
           onClick={toggleMobileMenu}
-          className="lg:hidden flex flex-row items-center gap-2 ml-8 cursor-pointer relative"
+          className="lg:hidden flex flex-row items-center gap-2 ml-4 cursor-pointer relative"
         >
-          <p className="text-white text-sm">Browse</p>
+          <p className="text-white text-xs">Browse</p>
           <BsChevronDown
             className={`text-white transition ${
               isMobileMenuVisible ? "rotate-180" : ""
@@ -86,7 +87,7 @@ const Navbar = () => {
           />
           <MobileMenu visible={isMobileMenuVisible} />
         </div>
-        <div className="flex flex-row ml-auto gap-7 items-center">
+        <div className="flex flex-row ml-auto gap-2 md:gap-7 items-center">
           <div className="text-white cursor-pointer hover:text-gray-300 transition">
             <BsSearch />
           </div>
