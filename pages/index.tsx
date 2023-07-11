@@ -1,8 +1,9 @@
 import { NextPageContext } from "next";
 import { getSession } from "next-auth/react";
 import useCurrentUser from "@/hooks/useCurrentUser";
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/Navbar";
 import Billboard from "@/components/Billboard";
+import MovieList from "@/components/MovieList";
 
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
@@ -29,6 +30,7 @@ export default function Home() {
     <>
       <Navbar />
       <Billboard />
+      <MovieList data={user?.favoriteMovies} title="My Favorites" />
     </>
   );
 }
