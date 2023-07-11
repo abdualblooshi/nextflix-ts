@@ -93,7 +93,9 @@ export default async function handler(
       return res.status(422).json({ error: "Invalid login credentials" });
     }
 
-    return res.status(200).json({ user, message: "Login successful" });
+    return res
+      .status(200)
+      .json({ user, message: `Welcome back, ${user.firstName}.` });
   } catch (error) {
     return res.status(400).json({
       error: `${error}`,
