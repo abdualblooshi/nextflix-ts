@@ -30,7 +30,8 @@
     "react-icons": "^4.10.1",
     "recoil": "^0.7.7",
     "swr": "^2.2.0",
-    "typescript": "5.0.2"
+    "typescript": "5.0.2",
+    "zustand": "^4.3.9"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.195",
