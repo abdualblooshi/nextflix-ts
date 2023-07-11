@@ -21,7 +21,8 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > TOP_OFFSET) {
+      console.log(window.scrollY);
+      if (window.scrollY >= TOP_OFFSET) {
         setShowBackground(true);
       } else {
         setShowBackground(false);
@@ -47,12 +48,7 @@ const Navbar = () => {
             items-center
             transition
             duration-500
-            bg-zinc-900/90
-            ${
-              showBackground
-                ? "bg-zinc-900/100 backdrop-filter backdrop-blur-lg"
-                : ""
-            }
+            ${showBackground ? "bg-zinc-900/90" : "bg-transparent"}
         `}
       >
         <Image
