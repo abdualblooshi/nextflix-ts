@@ -54,7 +54,7 @@ const Navbar = () => {
         <Image
           alt="Nextflix Logo"
           src={"/images/nextflix-text.png"}
-          className="w-24"
+          className="w-24 md:w-32"
           width={500}
           height={500}
         />
@@ -67,7 +67,7 @@ const Navbar = () => {
                 lg:flex
             "
         >
-          <NavbarItem label="Home" />
+          <NavbarItem label="Home" active />
           <NavbarItem label="Series" />
           <NavbarItem label="Films" />
           <NavbarItem label="New & Popular" />
