@@ -49,10 +49,17 @@ export default async function handler(
       },
     });
 
-    if (env === "production" && existingUsers.length === 3) {
+    /*if (env === "production" && existingUsers.length === 3) {
       return res.status(422).json({
         error:
           "You have reached the maximum number of accounts that can be created.",
+      });
+    }*/
+
+    if (env === "production") {
+      return res.status(422).json({
+        error:
+          "This is a production environment, please try again in a few minutes later",
       });
     }
 
