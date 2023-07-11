@@ -12,6 +12,7 @@ import {
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import { constants } from "@/constants";
 
 import { Ubuntu } from "next/font/google";
 
@@ -53,6 +54,20 @@ const AppWrapper = ({ Component, pageProps }: AppProps) => {
     <>
       <Head>
         <title>Nextflix</title>
+        <meta property="og:url" content="https://nextflix-ts.vercel.app" />
+        <meta property="og:title" content="Nextflix" />
+        <meta
+          name="twitter:card"
+          content="📺 A Netflix clone created using Tailwind CSS, Next.js, Prisma, MongoDB, NextAuth, & Vercel. "
+        />
+        <meta
+          property="og:description"
+          content="📺 A Netflix clone created using Tailwind CSS, Next.js, Prisma, MongoDB, NextAuth, & Vercel. "
+        />
+        <meta
+          property="og:image"
+          content="https://nextflix-ts.vercel.app/nextflix.png"
+        />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link
           rel="apple-touch-icon"
