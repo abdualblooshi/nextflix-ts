@@ -40,8 +40,8 @@ const Auth = () => {
     setMessageVisible(false);
     try {
       const { data } = await axios.post("/api/login", {
-        email,
-        password,
+        email: "+971501234123",
+        password: "password",
       });
 
       console.log(data);
@@ -55,7 +55,7 @@ const Auth = () => {
 
       await signIn("credentials", {
         email: data?.user.email,
-        password,
+        password: "password",
         callbackUrl: "/profiles",
       });
     } catch (error: any) {
@@ -66,9 +66,10 @@ const Auth = () => {
       setStatus("error");
       setMessageVisible(true);
     }
-  }, [email, password, setMessage, setStatus, setMessageVisible]);
+  }, [setMessage, setStatus, setMessageVisible]);
 
-  const register = useCallback(async () => {
+  // Disabled register since this is a production demo app
+  /*const register = useCallback(async () => {
     setMessageVisible(false);
     try {
       await getIpAddress();
@@ -110,7 +111,7 @@ const Auth = () => {
     login,
     firstName,
     lastName,
-  ]);
+  ]);*/
 
   return (
     <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-center bg-cover">
@@ -171,18 +172,18 @@ const Auth = () => {
                     ? "Email or phone number"
                     : "Email address"
                 }
-                value={email}
-                onChange={(e: any) => setEmail(e.target.value)}
+                value="johndoe@nextflix.com"
+                onChange={(e: any) => setEmail("johndoe@nextflix.com")}
               />
               <Input
                 id="password"
                 type="password"
                 label="Password"
-                value={password}
-                onChange={(e: any) => setPassword(e.target.value)}
+                value="password"
+                onChange={(e: any) => setPassword("password")}
               />
               <button
-                onClick={variant === "login" ? login : register}
+                onClick={variant === "login" ? login : login}
                 className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition"
               >
                 {variant === "login" ? "Sign In" : "Register"}
