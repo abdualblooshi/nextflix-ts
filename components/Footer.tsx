@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-zinc-900/90 text-white py-6 text-center fixed bottom-0">
+    <footer className="w-full bg-[#111]/90 text-white py-2 text-center bottom-0">
       <span>Developed by </span>
       <Link
         className="underline"
