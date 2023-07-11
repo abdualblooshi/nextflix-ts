@@ -1,6 +1,8 @@
-## [Demo](https://nextflix-aop2wgiu5-gitanimous.vercel.app/)
+## [Demo](https://nextflix-ts.vercel.app/)
 
-[![Frame 1](https://user-images.githubusercontent.com/34681035/229315306-eea7671f-6592-4f9f-8934-a08106156e41.png)](https://nextflix-aop2wgiu5-gitanimous.vercel.app/)
+[![Frame 1](https://user-images.githubusercontent.com/34681035/229315306-eea7671f-6592-4f9f-8934-a08106156e41.png)](https://nextflix-ts.vercel.app/)
+![image](https://github.com/abdualblooshi/nextflix-ts/assets/34681035/889cbb29-6ec9-46e9-93f2-fbb8b3c6740a)
+
 
 
 
