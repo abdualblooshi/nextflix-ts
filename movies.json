@@ -1,34 +1,106 @@
 [
-   {
-      "title":"Big Buck Bunny",
-      "description":"Three rodents amuse themselves by harassing creatures of the forest. However, when they mess with a bunny, he decides to teach them a lesson.",
-      "videoUrl":"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-      "thumbnailUrl":"https://upload.wikimedia.org/wikipedia/commons/7/70/Big.Buck.Bunny.-.Opening.Screen.png",
-      "genre":"Comedy",
-      "duration":"10 minutes"
-   },
-   {
-      "title":"Sintel",
-      "description":"A lonely young woman, Sintel, helps and befriends a dragon, whom she calls Scales. But when he is kidnapped by an adult dragon, Sintel decides to embark on a dangerous quest to find her lost friend Scales.",
-      "videoUrl":"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
-      "thumbnailUrl":"http://uhdtv.io/wp-content/uploads/2020/10/Sintel-3.jpg",
-      "genre":"Adventure",
-      "duration":"15 minutes"
-   },
-   {
-      "title":"Tears of Steel",
-      "description":"In an apocalyptic future, a group of soldiers and scientists takes refuge in Amsterdam to try to stop an army of robots that threatens the planet.",
-      "videoUrl":"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
-      "thumbnailUrl":"https://mango.blender.org/wp-content/uploads/2013/05/01_thom_celia_bridge.jpg",
-      "genre":"Action",
-      "duration":"12 minutes"
-   },
-   {
-      "title":"Elephant's Dream",
-      "description":"Friends Proog and Emo journey inside the folds of a seemingly infinite Machine, exploring the dark and twisted complex of wires, gears, and cogs, until a moment of conflict negates all their assumptions.",
-      "videoUrl":"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-      "thumbnailUrl":"https://download.blender.org/ED/cover.jpg",
-      "genre":"Sci-Fi",
-      "duration":"15 minutes"
-   }
+  {
+    "title": "Big Buck Bunny",
+    "description": "Three rodents amuse themselves by harassing creatures of the forest. However, when they mess with a bunny, he decides to teach them a lesson.",
+    "videoUrl": "https://res.cloudinary.com/dzetm0ykj/video/upload/v1689104537/bunny.mp4",
+    "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/7/70/Big.Buck.Bunny.-.Opening.Screen.png",
+    "genre": "Comedy",
+    "duration": "10 minutes"
+  },
+  {
+    "title": "Sintel",
+    "description": "A lonely young woman, Sintel, helps and befriends a dragon, whom she calls Scales. But when he is kidnapped by an adult dragon, Sintel decides to embark on a dangerous quest to find her lost friend Scales.",
+    "videoUrl": "https://res.cloudinary.com/dzetm0ykj/video/upload/v1689104529/sintel_hqbqho.mp4",
+    "thumbnailUrl": "http://uhdtv.io/wp-content/uploads/2020/10/Sintel-3.jpg",
+    "genre": "Adventure",
+    "duration": "15 minutes"
+  },
+  {
+    "title": "Tears of Steel",
+    "description": "In an apocalyptic future, a group of soldiers and scientists takes refuge in Amsterdam to try to stop an army of robots that threatens the planet.",
+    "videoUrl": "https://res.cloudinary.com/dzetm0ykj/video/upload/v1689104526/tears_kpklvu.mp4",
+    "thumbnailUrl": "https://mango.blender.org/wp-content/uploads/2013/05/01_thom_celia_bridge.jpg",
+    "genre": "Action",
+    "duration": "12 minutes"
+  },
+  {
+    "title": "Elephant's Dream",
+    "description": "Friends Proog and Emo journey inside the folds of a seemingly infinite Machine, exploring the dark and twisted complex of wires, gears, and cogs, until a moment of conflict negates all their assumptions.",
+    "videoUrl": "https://res.cloudinary.com/dzetm0ykj/video/upload/v1689103086/elephant_cbn2sf.mp4",
+    "thumbnailUrl": "https://download.blender.org/ED/cover.jpg",
+    "genre": "Sci-Fi",
+    "duration": "15 minutes"
+  },
+  {
+    "title": "Charge",
+    "description": "In an energy-scarce dystopia, an old destitute man breaks into a battery factory but soon finds himself confronted by a deadly security droid and no way out.",
+    "videoUrl": "https://res.cloudinary.com/dzetm0ykj/video/upload/v1689103068/Charge_fozau8.mp4",
+    "thumbnailUrl": "https://nextflix-ts.vercel.app/images/charge.jpg",
+    "genre": "Sci-Fi",
+    "duration": "4 minutes"
+  },
+  {
+    "title": "Caminandes 2: Gran Dillama",
+    "description": "Some llamas have no luck. Inspired by the good old Chuck Jones cartoons, this series of shorts follows the misadventures of one particularly persistent llama.",
+    "videoUrl": "https://res.cloudinary.com/dzetm0ykj/video/upload/v1689103049/Caminandes_rnmw4h.mp4",
+    "thumbnailUrl": "https://i.ytimg.com/vi/Z4C82eyhwgU/maxresdefault.jpg",
+    "genre": "Comedy",
+    "duration": "2 minutes"
+  },
+  {
+    "title": "Sprite Fright",
+    "description": "When a group of rowdy teenagers trek into an isolated forest, they discover peaceful mushroom creatures that turn out to be an unexpected force of nature.",
+    "videoUrl": "https://res.cloudinary.com/dzetm0ykj/video/upload/v1689104509/spritefright_fefvwm.mp4",
+    "thumbnailUrl": "https://ddz4ak4pa3d19.cloudfront.net/cache/d3/1d/d31dddfc92464cf9c92299fe86b7b71b.jpg",
+    "genre": "Mystery",
+    "duration": "10 minutes"
+  },
+  {
+    "title": "Coffee Run",
+    "description": "Fueled by caffeine, a young woman runs through the bittersweet memories of her past relationship.",
+    "videoUrl": "https://res.cloudinary.com/dzetm0ykj/video/upload/v1689103066/CoffeeRun_gfm8qb.mp4",
+    "thumbnailUrl": "https://ddz4ak4pa3d19.cloudfront.net/cache/48/2f/482f54938667ea9d6e438d6f3c7522df.jpg",
+    "genre": "Sci-Fi",
+    "duration": "3 minutes"
+  },
+  {
+    "title": "Spring",
+    "description": "Spring is the story of a shepherd girl and her dog, who face ancient spirits in order to continue the cycle of life.",
+    "videoUrl": "https://res.cloudinary.com/dzetm0ykj/video/upload/v1689104507/spring_fjm3pj.mp4",
+    "thumbnailUrl": "https://ddz4ak4pa3d19.cloudfront.net/cache/53/b2/53b2bc7d7900f0e1e60bf64ebf38032d.jpg",
+    "genre": "Adventure",
+    "duration": "8 minutes"
+  },
+  {
+    "title": "Hero",
+    "description": "A Blender '2D' open movie project, directed by Daniel Martinez Lara.",
+    "videoUrl": "https://res.cloudinary.com/dzetm0ykj/video/upload/v1689103054/Hero_cxxq42.mp4",
+    "thumbnailUrl": "https://ddz4ak4pa3d19.cloudfront.net/cache/40/f7/40f7bc97c952f8df0f9c88d29defe8d4.jpg",
+    "genre": "Thriller",
+    "duration": "4 minutes"
+  },
+  {
+    "title": "The Daily Dweebs",
+    "description": "An adorable dog going though an emotional rollercoaster, living with and being annoyed by a very playful little alien.",
+    "videoUrl": "https://res.cloudinary.com/dzetm0ykj/video/upload/v1689103076/TheDailyDweebs_f7cch9.mp4",
+    "thumbnailUrl": "https://ddz4ak4pa3d19.cloudfront.net/cache/8a/f5/8af53cbb77caa17860e05bb12637790e.jpg",
+    "genre": "Family",
+    "duration": "1 minute"
+  },
+  {
+    "title": "Agent 327",
+    "description": "Agent 327 is investigating a clue that leads him to a shady barbershop in Amsterdam.",
+    "videoUrl": "https://res.cloudinary.com/dzetm0ykj/video/upload/v1689103074/Agent_i70oy2.mp4",
+    "thumbnailUrl": "https://ddz4ak4pa3d19.cloudfront.net/cache/07/7c/077c975fdb404609532364dd5a2e2354.jpg",
+    "genre": "Thriller",
+    "duration": "4 minutes"
+  },
+  {
+    "title": "Cosmos Laundromat: First Cycle",
+    "description": "Aimed at becoming a feature film, the first episode of Cosmos Laundromat became the biggest Blender Institute production so far.",
+    "videoUrl": "https://res.cloudinary.com/dzetm0ykj/video/upload/v1689104540/cosmos.mp4",
+    "thumbnailUrl": "https://ddz4ak4pa3d19.cloudfront.net/cache/11/47/114784105a9b180e08e117cbf2612e5b.jpg",
+    "genre": "Sci-Fi",
+    "duration": "12 minutes"
+  }
 ]
