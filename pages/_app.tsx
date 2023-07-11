@@ -3,6 +3,7 @@ import { useCallback, useEffect } from "react";
 import { RecoilRoot, useRecoilState } from "recoil";
 import type { AppProps } from "next/app";
 import Message from "@/components/message";
+import Footer from "@/components/Footer";
 import {
   isVisibleState,
   messageState,
@@ -95,6 +96,7 @@ const AppWrapper = ({ Component, pageProps }: AppProps) => {
           status={status}
         />
         <Component {...pageProps} />
+        <Footer />
       </div>
     </>
   );
