@@ -1,7 +1,26 @@
 import React, { useEffect } from "react";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
+import { getSession } from "next-auth/react";
 import useMovie from "@/hooks/useMovie";
+import { NextPageContext } from "next";
+
+export async function getServerSideProps(context: NextPageContext) {
+  const session = await getSession(context);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/auth",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+}
 
 const Watch = () => {
   const router = useRouter();
